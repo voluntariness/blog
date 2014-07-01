@@ -1,35 +1,29 @@
 <?php
 
-class ArticleController extends BaseController {
+class ArticleController extends BaseController 
+{
 
     // protected $template = 'template';
-    private $menu = [];
 
     public function index( $type = 'all' )
     {
-        $data = [];
-        $this->menu['active'] = $type;
-        $data['menu'] = $this->menu;
-
-        $data['list'] = [];
-        
-        return View::make('article/list', $data );
+        $this->setData('side_active', $type);
+        $this->setData('list', [] );
+        return View::make('article/list', $this->getData() );
 
     }
 
     function __construct()
     {
         parent::__construct();
-
-        $this->menu = [
-            'list' => [
-                'all' => '所有文章'
-                , 'php' => 'PHP'
-                , 'js' => 'JavaScript'
-                , 'Other' => 'other'
-            ]
+        $menu = [
+            'all' => '所有文章'
+            , 'php' => 'PHP'
+            , 'js' => 'JavaScript'
+            , 'Other' => 'other'
         ];
 
+        $this->setData('side_menu', $menu);
     }
 
 }

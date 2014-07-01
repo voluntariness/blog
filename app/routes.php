@@ -11,6 +11,19 @@
 |
 */
 
-Route::get('/', "ArticleController@index");
+// Route::post('register', array('before' => 'csrf', function( )
+// {
+//     return '你給了一個合法的 CSRF 標記!';
+// }));
 
+Route::post('/ajax/login', "SystemController@login" );
+
+
+Route::get('/', "ArticleController@index");
+Route::get('/article', "ArticleController@index");
 Route::get('/article/{type}', "ArticleController@index" );
+
+
+Route::get('/about', "AboutController@index");
+
+

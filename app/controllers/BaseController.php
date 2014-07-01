@@ -7,13 +7,19 @@ class BaseController extends Controller {
 	 *
 	 * @return void
 	 */
-	protected $data = [];
+	private $data = [];
 
-	protected function data( $name, $value )
+	protected function setData( $key, $val = null )
 	{
-		if (is_array($name)) {
-			
+		if (is_array($key)) {
+			$this->data += $key;
+		} else {
+			$this->data[$key] = $val;
 		}
+	}
+	protected function getData()
+	{
+		return $this->data;
 	}
 
 	public function getUser() 
@@ -28,22 +34,20 @@ class BaseController extends Controller {
 			$this->layout = View::make($this->layout);
 		}
 
-
-		$data = [];
-
         /* menu list */
-        $list = [ 'about'   => 'About'
-            	, 'article' => '文章'
+        $menu['menu'] = [ 
+        	'about'   => 'About'
+            , 'article' => '文章'
         ];
 
-        if ( ($data['user'] = $this->getUser()) ) {
-            $list['manage_article']  = '文章管理';
-            $list['manage_message']  = '留言管理';
+        if ( $this->getUser() ) {
+        	$this->setData('user', $this->getUser() );
+            $menu['manage_article']  = '文章管理';
+            $menu['manage_message']  = '留言管理';
         }
-        $data['active'] = str_replace('controller', '', strtolower(get_class($this)));
-        $data['menu_list'] = $list;
-
-        View::make('template', $data);
+        $menu['active'] = str_replace('controller', '', strtolower(get_class($this)));
+        
+        $this->setData('header_menu', $menu);
 
     }
 

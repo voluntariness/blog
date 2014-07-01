@@ -13,19 +13,22 @@
     @section('header')
         <header>
             <div id="login-panel" >
-                <?php if( isset($login) && $login === true ) : ?>
+                @if ( ! empty($user) )
                     <a href="/ajax/logout" class="btn btn-warning" > 登出 </a>
-                <?php else : ?>
+                @else
+                    <form id="login-form" action="/ajax/login" method="post" >
+                        <input type="hidden" name="" value="<?= csrf_token() ?>" />
                         <input type="password" name="my-password" class="form-control" placeholder=" Password." />
                         <button type="submit" id="login-button" class="btn btn-info" > 登入 </button>
-                <?php endif; ?>
+                    </form>
+                @endif
             </div>
             <ul class="nav nav-pills">
-                <?php foreach( $menu_list as $tag => $name ) : ?>
-                    <li class="<?= ($active==$tag ? 'active' : '') ?>">
+                @foreach( $header_menu['menu'] as $tag => $name )
+                    <li class="<?= ($header_menu['active']==$tag ? 'active' : '') ?>">
                         <a href="/<?= $tag ?>"><?= $name ?></a>
                     </li>
-                <?php endforeach; ?>
+                @endforeach
             </ul>
             <div id="alert-message"> &nbsp; </div>
         </header>

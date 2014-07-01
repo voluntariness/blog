@@ -1,9 +1,7 @@
-@extends('template');
-@include('article/side', ['menu', $menu]);
-
+@extends('template')
+@include('article/sidebar')
 @section('content')
     <div id="content" class="col-xs-9">
-    abcde
         <?php foreach( $list as $row ) : ?>
             <article>
                 <label class="date-label"><?=$row['article_date']?></label>
