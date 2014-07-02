@@ -23,9 +23,9 @@ class SystemController extends BaseController
         $client = new Google_Client();
         $client->setClientId( CLIENT_ID );
         $client->setClientSecret( CLIENT_SECRET );
-        $client->setRedirectUri("http://localhost:8089/oauth2callback");
-        if (isset($_GET['code'])) {
-            $client->authenticate($_GET['code']);
+        $client->setRedirectUri( asset( 'oauth2callback' ) );
+        if ( Input::get('code') ) {
+            $client->authenticate( Input::get('code') );
             $token = json_decode($client->getAccessToken(), TRUE);
             $authURL = 'https://www.googleapis.com/plus/v1/people/me';
             $APIKey = APIKEY;
