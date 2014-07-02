@@ -23,8 +23,6 @@ class SystemController extends BaseController
         $client = new Google_Client();
         $client->setClientId( CLIENT_ID );
         $client->setClientSecret( CLIENT_SECRET );
-        echo asset( 'oauth2callback' );
-        exit;
         $client->setRedirectUri( asset( 'oauth2callback' ) );
         if ( Input::get('code') ) {
             $client->authenticate( Input::get('code') );
