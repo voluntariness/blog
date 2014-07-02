@@ -37,7 +37,7 @@ function login( )
 {
     // var postData = $(this).serialize();
     $('#login-message').html([
-        $('<img/>').attr('src', '/images/login-loading.gif')
+        $('<img/>').attr('src', '/images/login_loading.gif')
         , '登入中 ... '
     ]);
     $('#login-iframe').attr({
