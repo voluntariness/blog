@@ -1,4 +1,8 @@
 <?php
+date_default_timezone_set("Asia/Taipei");
+header('Content-Type: text/html; charset=utf-8');
+
+include 'config.php';
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 

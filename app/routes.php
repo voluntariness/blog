@@ -16,8 +16,11 @@
 //     return '你給了一個合法的 CSRF 標記!';
 // }));
 
-Route::post('/ajax/login', "SystemController@login" );
+// Route::post('/ajax/login', "SystemController@login" );
 
+/* 使用 Google API 登入 */
+Route::get('/oauth2callback', "SystemController@login" );
+Route::get('/logout', "SystemController@logout" );
 
 Route::get('/', "ArticleController@index");
 Route::get('/article', "ArticleController@index");

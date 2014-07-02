@@ -1,0 +1,95 @@
+body
+{
+    min-width: 1340px;
+    margin: 0px;
+    padding: 0px;
+}
+/* common */
+.invalid{ border:1px solid #fd6f6f; background: #ffe4e4; }
+
+/* template */
+    /* header */
+        header {
+            background: #fff;
+            color: #333;
+            display: block;
+            padding: 10px 0 10px 100px;
+        }
+        #login-panel {
+            float: right;
+            line-height: 40px;
+            margin: 0 20px 0 0;
+        }
+        #login-panel input.form-control {
+            width: 140px;
+            display: inline-block;
+        }
+        #alert-message {
+            position: fixed;
+            width: 400px;
+            top:5px;
+            left: 700px;
+            height: 45px;
+            z-index: 100;
+        }
+
+
+    /* footer */
+        footer {
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+        }
+
+    #login-message {
+        text-align: center;
+    }
+
+
+
+
+/* content */
+    #main
+    {
+        /*text-align: center;*/
+        position: relative;
+    }
+
+    /* article */
+        #sidebar
+        {
+/*            position: absolute;
+            width: 240px;*/
+        }
+        #content 
+        {
+            /*position: relative;*/
+            /*margin-left:250px;*/
+        }
+        article 
+        {
+
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0);
+            border-color: #DDD;
+            border-radius: 4px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+            margin: 0 20px 20px 0px;
+            padding: 20px;
+            position: relative;
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+            width: 1000px;
+        }
+
+        article > label.date-label
+        {
+            position: absolute;
+            right: 20px;
+        }
+
+    /* manage_article */
+
+        .option-btns {
+            margin-bottom: 10px;
+        }
+

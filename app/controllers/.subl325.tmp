@@ -1,0 +1,17 @@
+<?php
+// use \Users\Ivan\Documents\WebSide\myWebSide\app\libs\Google\Client;
+$tmpDir = getcwd();
+chdir( app_path() . '/libs' );
+require_once 'Google/Client.php';
+chdir( $tmpDir );
+
+class AboutController extends BaseController 
+{
+	public function index()
+	{
+
+        $t = new Client();
+
+		return View::make( 'about/main', $this->getData() );
+	}
+}
