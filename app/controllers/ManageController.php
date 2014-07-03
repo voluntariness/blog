@@ -2,18 +2,6 @@
 
 class ManageController extends BaseController 
 {
-    public function index ( $page = 'article', $type = null ) 
-    {
-        $this->setData('sidebar_active', $page);
-        switch ( $page ) {
-            case 'article'  : return $this->pageArticleList();        
-            case 'message'  : return $this->pageMessageList();
-            case 'users'   : return $this->pageUsersList();
-            default         : 
-
-                break;
-        }
-    }
 
     /*
         public function pageNewsList ( $type = null )
@@ -22,10 +10,30 @@ class ManageController extends BaseController
         }
     */
 
-    public function pageArticleList ()
+    public function pageArticleList ( $type = null)
     {
+        // $this->setData('sidebar')
+        // $query = DB::table('article')->orderBy('article_date','desc');
+        // ( ! empty( $type ) ) and $query->where('article_type', $type );
+        $list = empty( $type ) 
+            ? Article::orderBy('datetime','desc')->get() 
+            : Article::where('type', $type)->orderBy('datetime', 'desc')->get(); 
+        $this->setData('list', $list );
+
         return View::make('manage/article', $this->getData() );
     }
+
+    public function pageArticleModify( $id = 0 )
+    {
+        $id = is_numeric($id) ? $id : 0;
+
+        ( $row = Article::find($id) ) or ( $row = new Article );
+
+        $this->setData( 'row', $row );
+        
+        return View::make('manage/article_modify', $this->getData() );
+    }
+
     public function pageMessageList ( $type = null )
     {
         return View::make('manage/message', $this->getData());
@@ -39,15 +47,16 @@ class ManageController extends BaseController
     function __construct()
     {
         parent::__construct();
-
         $menu = [
-            // 'news' => '訊息管理'
-            'article' => '文章管理'
-            , 'message' => '留言管理'
-            , 'users' => '成員管理'
+            'menu' => [
+                'article' => '文章管理'
+                , 'message' => '留言管理'
+                , 'users' => '成員管理'
+            ]
+            , 'active' => Request::segment(2)
         ];
 
-        $this->setData('side_menu', $menu);
+        $this->setData('sidebar', $menu);
     }
 
 

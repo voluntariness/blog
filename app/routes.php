@@ -37,7 +37,11 @@ Route::get('/link', "LinkController@index");
 
 Route::get('/about', "AboutController@index");
 
-Route::get('/manage', "ManageController@index");
-Route::get('/manage/{page}', "ManageController@index");
+Route::get('/manage', "ManageController@pageArticleList");
+Route::get('/manage/article', "ManageController@pageArticleList");
+Route::get('/manage/article/{$type}', "ManageController@pageArticleList");
+Route::get('/manage/article/modify/{id}', "ManageController@pageArticleModify");
 
+Route::get('/manage/message', "ManageController@pageMessageList");
 
+Route::get('/manage/users', "ManageController@pageUsersList");

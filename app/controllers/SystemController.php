@@ -12,13 +12,13 @@ class SystemController extends BaseController
     }
 	public function login()
 	{
+        // User::all();
         /*
                 need 
                 "Contacts API"
                 "Google+ API"
         */
-        if ( ($user = DB::table('user')->where('user_email', 'voluntarin@gmail.com')->first()) ) {
-
+        if ( ($user = User::where('email', '=', 'voluntarin@gmail.com')->first()) ) {
             Session::put('user', $user);
             return '<script> parent.login_success(); </script>';
         }

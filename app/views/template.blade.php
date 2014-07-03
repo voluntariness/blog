@@ -22,6 +22,11 @@
                     <a type="submit" id="login-button" class="btn btn-info" href="<?= $login_url ?>" > 登入 </a>
                 @endif
             </div>
+            <div id="user-info">
+                @if( !empty($user) )
+                    Welcome！ <?= $user->firstname ?> .
+                @endif
+            </div>
             <ul id="header-menu" class="nav nav-pills">
                 @foreach( $header_menu['menu'] as $tag => $name )
                     <li class="<?= ($header_menu['active']==$tag ? 'active' : '') ?>">
@@ -34,7 +39,6 @@
     @show
     
     <div id="main" >
-
         @yield('sidebar')
 
         @yield('content')

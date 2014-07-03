@@ -15,17 +15,25 @@ body
             height: 60px;
             margin-bottom: 20px;
             min-width: 1340px;
-            padding: 10px 0 10px 100px;
             position: relative;
         }
         #login-panel {
-            /*bottom: 10px;*/
+            bottom: 10px;
             line-height: 40px;
             position: absolute;
             right: 20px;
         }
+        #user-info {
+            color: #fff;
+            left: 20px;
+            line-height: 60px;
+            position: absolute;
+            top: 0px;
+
+        }
         #header-menu {
             bottom: 10px;
+            left:150px;
             position: absolute;
         }
         #alert-message {
@@ -60,50 +68,40 @@ body
     }
 
 
-
-
-/* content */
-    #main
+/* home */
+    #content 
     {
-        /*text-align: center;*/
+        /*position: relative;*/
+        /*margin-left:250px;*/
+    }
+    article 
+    {
+
+        background: #fff;
+        border: 1px solid rgba(0, 0, 0, 0);
+        border-color: #DDD;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+        margin: 0 20px 20px 0px;
+        padding: 20px;
         position: relative;
+        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+        width: 1000px;
     }
 
+    article > label.date-label
+    {
+        position: absolute;
+        right: 20px;
+    }
+
+/* manage */
     /* article */
-        #sidebar
-        {
-/*            position: absolute;
-            width: 240px;*/
-        }
-        #content 
-        {
-            /*position: relative;*/
-            /*margin-left:250px;*/
-        }
-        article 
-        {
-
-            background: #fff;
-            border: 1px solid rgba(0, 0, 0, 0);
-            border-color: #DDD;
-            border-radius: 4px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-            margin: 0 20px 20px 0px;
-            padding: 20px;
-            position: relative;
-            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-            width: 1000px;
+        .new-btn {
+            margin-left: 20px;
         }
 
-        article > label.date-label
-        {
-            position: absolute;
-            right: 20px;
-        }
-
-    /* manage_article */
-
-        .option-btns {
-            margin-bottom: 10px;
-        }
+    .option-btns {
+        margin-bottom: 10px;
+    }
 

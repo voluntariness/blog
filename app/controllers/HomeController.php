@@ -15,13 +15,16 @@ class HomeController extends BaseController
     {
         parent::__construct();
         $menu = [
-            'all' => '所有文章'
-            , 'php' => 'PHP'
-            , 'js' => 'JavaScript'
-            , 'Other' => 'other'
+        	'menu' => [
+	            'all' => '所有文章'
+	            , 'php' => 'PHP'
+	            , 'js' => 'JavaScript'
+	            , 'other' => 'other'
+          	]
+            , 'active' => Request::segment(2)
         ];
 
-        $this->setData('side_menu', $menu);
+        $this->setData('sidebar', $menu);
     }
 
 }
