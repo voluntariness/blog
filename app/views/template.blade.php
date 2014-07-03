@@ -3,12 +3,14 @@
 <head>
     <meta charset="utf-8">
     <title>Hello</title>
-    <link href="/sslibs/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="/sslibs/webside/css/layout.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="/sslibs/jquery/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="/sslibs/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/sslibs/webside/js/layouot.js"></script>
-    <script type="text/javascript" src="/sslibs/webside/js/message.js"></script>
+    <link href="/jscss/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/jscss/webside/css/layout.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/jscss/jquery/jquery-1.11.0.min.js"></script>
+    <!--script type="text/javascript" src="/jscss/starter-kit-1.5.1"></script-->
+    <script type="text/javascript" src="/jscss/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/jscss/webside/js/layouot.js"></script>
+    <script type="text/javascript" src="/jscss/webside/js/message.js"></script>
+
 </head>
 <body>
     @section('header')
@@ -17,10 +19,10 @@
                 @if ( ! empty($user) )
                     <a href="/logout" class="btn btn-warning" > 登出 </a>
                 @else
-                    <a type="submit" id="login-button" class="btn btn-info" href="{{ $login_url }}" > 登入 </a>
+                    <a type="submit" id="login-button" class="btn btn-info" href="<?= $login_url ?>" > 登入 </a>
                 @endif
             </div>
-            <ul class="nav nav-pills">
+            <ul id="header-menu" class="nav nav-pills">
                 @foreach( $header_menu['menu'] as $tag => $name )
                     <li class="<?= ($header_menu['active']==$tag ? 'active' : '') ?>">
                         <a href="/<?= $tag ?>"><?= $name ?></a>
@@ -31,7 +33,7 @@
         </header>
     @show
     
-    <div id="main" class="row well">
+    <div id="main" >
 
         @yield('sidebar')
 
@@ -40,8 +42,8 @@
     </div>
 
     @section('footer')
-        <footer>
-            Copyright &copy; : jcluo All rights reserved...
+        <footer >
+            Copyright &copy; : jcluo All rights reserved.
         </footer>
     @show
 

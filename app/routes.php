@@ -16,17 +16,28 @@
 //     return '你給了一個合法的 CSRF 標記!';
 // }));
 
-// Route::post('/ajax/login', "SystemController@login" );
+/* 基本上用不到 */
+Blade::setContentTags('<%', '%>');
+Blade::setEscapedContentTags('<%%', '%%>');
+
+
+
 
 /* 使用 Google API 登入 */
 Route::get('/oauth2callback', "SystemController@login" );
 Route::get('/logout', "SystemController@logout" );
 
-Route::get('/', "ArticleController@index");
-Route::get('/article', "ArticleController@index");
-Route::get('/article/{type}', "ArticleController@index" );
 
+Route::get('/', "HomeController@index");
+Route::get('/home', "HomeController@index");
+Route::get('/home/{type}', "HomeController@index" );
+
+
+Route::get('/link', "LinkController@index");
 
 Route::get('/about', "AboutController@index");
+
+Route::get('/manage', "ManageController@index");
+Route::get('/manage/{page}', "ManageController@index");
 
 

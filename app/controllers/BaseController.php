@@ -32,16 +32,16 @@ class BaseController extends Controller {
 
         /* menu list */
         $menu['menu'] = [ 
-        	'about'   => 'About'
-            , 'article' => '文章'
+            'home' => 'Home'
+            , 'link'    => 'Link'
+            , 'about'   => 'About'
         ];
 
         if ( Session::get('user') ) {
 
             $this->setData('user', Session::get('user') );
-            $menu['menu']['manage_article']  = '文章管理';
-            $menu['menu']['manage_message']  = '留言管理';
 
+            $menu['menu']['manage']  = '網站管理';
         } else {
             /* 產生登入網址 */
             require_once app_path() . '/libs/Google/Load.php';
@@ -59,7 +59,8 @@ class BaseController extends Controller {
                 // View basic information about your account
                 "https://www.googleapis.com/auth/userinfo.profile"
             ));
-            $this->setData('login_url', $client->createAuthUrl());
+            // $this->setData('login_url', $client->createAuthUrl());
+            $this->setData('login_url', '/oauth2callback');
 
         } /* end - if :: user */
 
