@@ -15,11 +15,11 @@
  * limitations under the License.
  */
 
-require_once 'Google/Client.php';
-require_once 'Google/Exception.php';
-require_once 'Google/Http/Request.php';
-require_once 'Google/Http/REST.php';
-require_once 'Google/Utils.php';
+// require_once 'Google/Client.php';
+// require_once 'Google/Exception.php';
+// require_once 'Google/Http/Request.php';
+// require_once 'Google/Http/REST.php';
+// require_once 'Google/Utils.php';
 
 /**
  * @author Chirag Shah <chirags@google.com>
