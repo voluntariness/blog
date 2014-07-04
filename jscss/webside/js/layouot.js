@@ -1,9 +1,9 @@
 
 $(function(){
+
     $('#login-button').on('click', login );
     $('#login-iframe').on('load', login_error );
     ajax_init();
-   
 
 });
 
@@ -12,11 +12,12 @@ function ajax_init()
 {
     $( document ).ajaxSend( function( event, jqXHR, options ) 
         {
-            var form = $(event.currentTarget.forms[0]); 
+            var form = $(event.currentTarget.activeElement.form);
             if (form.hasClass('run-ajax')) {
                 options.isCancel = true;
                 jqXHR.abort();
             }
+            options.activeForm = form;
             form.addClass('run-ajax');
             form.find('[type=submit]').addClass('disabled');
         }
@@ -24,10 +25,10 @@ function ajax_init()
     $( document ).ajaxComplete( function( event, jqXHR, options )
         {
             if( options.isCancel ) return ;
-            var form = $(event.currentTarget.forms[0]); 
-            var button = $(event.currentTarget.activeElement);
+            var form = options.activeForm;
             form.removeClass('run-ajax');
             form.find('[type=submit]').removeClass('disabled');
+
         }
     ); 
 }

@@ -4,7 +4,6 @@
             <?php foreach ( $sidebar['menu'] as $tag => $name ) : ?>
                 <?php $active = $sidebar['active'] == $tag ? 'active' : ''; ?>
                 <a class="list-group-item <?= $active ?>" href="/manage/<?=$tag?>">
-                    <span class="badge"><?= isset($counts[$tag]) ? $counts[$tag] : 0 ?></span>
                     <?=$name?>
                 </a>
             <?php endforeach; ?>

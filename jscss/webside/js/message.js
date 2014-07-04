@@ -14,7 +14,8 @@ var Message = function( )
                     , color: '#333'
                 }
             , content : {
-                padding: '10px'
+                padding: '0 10px'
+                , 'line-height' : '34px'
                 , 'border-radius': '3px'
                 , 'font-size' : '15px'
                 , 'font-weight' : 'bold'
@@ -58,6 +59,7 @@ var Message = function( )
                 }
         };
     this.domBackGround = null;
+    this.msg        = function( t, msg, sec ) { content = msg; second = Number(sec) || 0; type = t;     return this; }
     this.danger     = function( msg, sec ) { content = msg; second = Number(sec) || 0; type = 'danger';     return this; }
     this.warning    = function( msg, sec ) { content = msg; second = Number(sec) || 0; type = 'warning';    return this; }
     this.success    = function( msg, sec ) { content = msg; second = Number(sec) || 0; type = 'success';    return this; }

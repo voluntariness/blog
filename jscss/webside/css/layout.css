@@ -5,7 +5,7 @@ body
     padding: 0px;
 }
 /* common */
-.invalid{ border:1px solid #fd6f6f; background: #ffe4e4; }
+input.invalid{ border:1px solid #fd6f6f; background: #ffe4e4; }
 
 /* template */
     /* header */
@@ -39,7 +39,7 @@ body
         #alert-message {
             position: fixed;
             width: 400px;
-            top:5px;
+            top: 70px;
             left: 700px;
             height: 45px;
             z-index: 100;

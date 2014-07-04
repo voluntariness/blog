@@ -18,10 +18,10 @@ class SystemController extends BaseController
                 "Contacts API"
                 "Google+ API"
         */
-        // if ( ($user = User::where('email', '=', 'voluntarin@gmail.com')->first()) ) {
-        //     Session::put('user', $user);
-        //     return '<script> parent.login_success(); </script>';
-        // }
+        if ( ($user = User::where('email', '=', 'voluntarin@gmail.com')->first()) ) {
+            Session::put('user', $user);
+            return '<script> parent.login_success(); </script>';
+        }
 
         $client = new Google_Client();
         $client->setClientId( CLIENT_ID );
@@ -36,8 +36,7 @@ class SystemController extends BaseController
             $profile = json_decode($profile, TRUE);
             $email = $profile['emails'][0]['value'];
 
-            if ( ($user = DB::table('user')->where('user_email', $email)->first()) ) {
-
+            if ( ($user = User::where('email', $email)->first()) ) {
                 Session::put('user', $user);
                 return '<script> parent.login_success(); </script>';
             }

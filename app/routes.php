@@ -46,4 +46,6 @@ Route::get('/manage/message', "ManageController@pageMessageList");
 
 Route::get('/manage/users', "ManageController@pageUsersList");
 Route::get('/manage/parameter', "ManageController@pageParameterList");
+Route::post('/manage/parameter/save', "ManageController@pageParameterSave");
+Route::post('/manage/parameter/delete', "ManageController@pageParameterDelete");
 Route::get('/manage/parameter/{group}', "ManageController@pageParameterList");
