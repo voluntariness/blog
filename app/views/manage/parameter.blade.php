@@ -38,11 +38,10 @@
                             <div class="col-xs-2">
                                 <input type="text" id="parameter-group" class="form-control" name="value" value="" />
                             </div>
-                            <div class="col-xs-1">
-                                <button type="button" class="btn btn-default delete-btn" tabindex="-1">
-                                    <span class="glyphicon glyphicon-floppy-remove" ></span>  Remove
-                                </button>
+                            <label for="parameter-order" class="col-xs-1 control-label">順序 </label>
+                            <div class="col-xs-2">
                             </div>
+
                         </div>
 
                         <div class="form-group">
@@ -55,11 +54,16 @@
                                     <span class="glyphicon glyphicon-floppy-disk" ></span>  Save
                                 </button>
                             </div>
+                            <div class="col-xs-1">
+                                <button type="button" class="btn btn-default delete-btn" tabindex="-1">
+                                    <span class="glyphicon glyphicon-floppy-remove" ></span>  Remove
+                                </button>
+                            </div>
                             <div class="col-xs-3 request-msg"> </div>
                         </div>
                     </div>
+                    <hr/>
                 </form>
-                <hr/>
             </div>
 
             @foreach ( $list as $row )
@@ -76,11 +80,6 @@
                             <div class="col-xs-2">
                                 <input type="text" id="parameter-group" class="form-control" name="value" value="<?= $row->value ?>" />
                             </div>
-                            <div class="col-xs-1">
-                                <button type="button" class="btn btn-default delete-btn" tabindex="-1">
-                                    <span class="glyphicon glyphicon-floppy-remove" ></span>  Remove
-                                </button>
-                            </div>
                         </div>
 
                         <div class="form-group">
@@ -91,6 +90,11 @@
                             <div class="col-xs-1">
                                 <button type="submit" class="btn btn-primary save-btn" btn-action="save">
                                     <span class="glyphicon glyphicon-floppy-disk" ></span>  Save
+                                </button>
+                            </div>
+                            <div class="col-xs-1">
+                                <button type="button" class="btn btn-default delete-btn" tabindex="-1">
+                                    <span class="glyphicon glyphicon-floppy-remove" ></span>  Remove
                                 </button>
                             </div>
                             <div class="col-xs-3 request-msg"> </div>
@@ -112,14 +116,33 @@
 
         var dataStatus = function ( formDom, status, msg )
         {
-
             $(formDom).find('.data-status')
                 .attr('class', 'data-status bs-callout bs-callout-' + status);
             (new Message).msg(status, msg, 3000).show( $(formDom).find('.request-msg') );
         }
 
+        /* 更新 參數群組 */
+        var updateGroup = function ( )
+        {
+            var url = '/manage/parameter/ajax/groups';
+            $.ajax( url, { dataType: 'json' } )
+                .done( function ( request ) {
+                    if ( request.status ) {
+                        var selGroup = $('#select-group'), groups = request.groups;
+                        selGroup.html('');
+                        $('<option/>').val('GroupType').html('各群組管理').appendTo(selGroup);
+                        for ( var i in groups ) {
+                            $('<option/>').val( groups[i]['key'] )
+                                .html( groups[i]['value'] )
+                                .appendTo( selGroup );
+                        }
+                    }
+                })
+                .fail( function ( request ) {});
+        }
+
         $('#select-group').on('change', function (){
-            location.href = '/manage/parameter/' + $(this).val();
+            location.href = '/manage/parameter/view/' + $(this).val();
         });
             
         $('#add-row').on('click', function() {
@@ -142,10 +165,16 @@
                 , url = $(this).attr('action') + '/save'
                 , formDom = $(this);
 
-            $.ajax( url, {data: data, type: 'post', dataType: 'json' } )
+            $.ajax( url, {data: data, type: 'post', dataType: 'json', ajaxLock: true } )
                 .done( function (request) {
+
                     if ( request.status ) {
                         formDom.find('input[name=id]').val( request.id );
+
+                        if( $('#select-group').val() == 'GroupType' ) {
+                            updateGroup();
+                        }
+
                     } else {
                         for ( var name in request.invalid ) {
                             formDom.find('[name=' + name + ']')
@@ -175,14 +204,20 @@
                 , url = formDom.attr('action') + '/delete';
 
             if ( formDom.find('input[name=id]').val() == 0 ) {
-                formDom.remove();
+                removeDom( formDom );
                 return;
             }
 
-            $.ajax( url, {data: data, type: 'post', dataType: 'json' } )
+            $.ajax( url, {data: data, type: 'post', dataType: 'json', ajaxLock: true } )
                 .done( function (request) {
                     if ( request.status ) {
-                        formDom.remove();
+
+                        if( $('#select-group').val() == 'GroupType' ) {
+                            updateGroup();
+                        }
+
+                        removeDom( formDom );
+
                         showMsg( (new Message()).success( request.msg, 3000) );
                     } else {
                         dataStatus( formDom, 'danger', request.msg );

@@ -15,8 +15,7 @@ class ManageController extends BaseController
         // $this->setData('sidebar')
         // $query = DB::table('article')->orderBy('article_date','desc');
         // ( ! empty( $type ) ) and $query->where('article_type', $type );
-
-        $this->setData('types', Parameter::where('group','ArticleType')->get());
+        $this->setData('types', Parameter::where('group','ArticleType')->get() );
         $this->setData('type_select', $type);
 
         $list = empty( $type ) 
@@ -29,6 +28,16 @@ class ManageController extends BaseController
 
     public function pageArticleModify( $id = 0 )
     {
+        
+        $type_list = [];
+        $result = Parameter::select('key', 'value')->where('group','ArticleType')->get();
+        foreach ( $result as $row ) {
+            $type_list[ $row->key ] = $row->value;
+        }
+
+        $this->setData('type_list', $type_list);
+
+
         $id = is_numeric($id) ? $id : 0;
 
         ( $row = Article::find($id) ) or ( $row = new Article );
@@ -62,6 +71,7 @@ class ManageController extends BaseController
 
         return View::make('manage/parameter', $this->getData());
     }
+
     public function pageParameterSave () 
     {
         $invalid = [];
@@ -75,9 +85,11 @@ class ManageController extends BaseController
 
         if ( empty(trim($row->group)) ) {
             $invalid['group'] = ' 此欄位不能為空值！ ';
-        } elseif ( empty(trim($row->key)) ) {
+        } 
+        if ( empty(trim($row->key)) ) {
             $invalid['key'] = ' 此欄位不能為空值！ ';
-        } elseif ( empty(trim($row->value)) ) {
+        } 
+        if ( empty(trim($row->value)) ) {
             $invalid['value'] = ' 此欄位不能為空值！ ';
         }
 
@@ -99,7 +111,21 @@ class ManageController extends BaseController
         $row->delete();
         return json_encode( ['status' => true, 'msg' => '資料已刪除！'] );
     }
+    public function pageParameterAjax ( $key = null)
+    {
+        $request = [ 'status' => false , 'msg' => '' ];
 
+        switch ( $key ) {
+            case 'groups':
+                $request['groups'] = Parameter::where('group', 'GroupType')->get();
+                $request['status'] = true;
+            break;
+
+        }
+
+        return json_encode( $request );
+
+    }
 
     function __construct()
     {

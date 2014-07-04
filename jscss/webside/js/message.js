@@ -9,7 +9,6 @@ var Message = function( )
                     background : '#fff'
                     , border: '1px solid #ddd'
                     , 'border-radius': '3px'
-                    , margin: '3px'
                     , opacity : 0
                     , color: '#333'
                 }

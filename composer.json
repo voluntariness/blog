@@ -11,6 +11,7 @@
 			"app/commands",
 			"app/controllers",
 			"app/library",
+			"app/library/Html.php",
 			"app/models",
 			"app/models/BaseModel.php",
 			"app/database/migrations",

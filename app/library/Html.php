@@ -1,5 +1,4 @@
 <?php
-
 class Html 
 {
     public static function options( $opts, $sel = null )

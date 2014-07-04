@@ -12,8 +12,8 @@
             <div class="form-group">
                 <label for="article-type" class="col-xs-1 control-label">type</label>
                 <div class="col-xs-10">
-                    <select id="article-type" name="type" >
-                        <?= Article::enum('type') ?>
+                    <select id="article-type" class="form-control" name="type" >
+                            <?= Html::options($type_list ) ?>
                     </select>
                     <!-- <input type="password" class="form-control" id="inputPassword3" placeholder="Password"> -->
                 </div>

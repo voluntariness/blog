@@ -12,6 +12,7 @@ function ajax_init()
 {
     $( document ).ajaxSend( function( event, jqXHR, options ) 
         {
+            if( ! options.ajaxLock ) return;
             var form = $(event.currentTarget.activeElement.form);
             if (form.hasClass('run-ajax')) {
                 options.isCancel = true;
@@ -24,7 +25,7 @@ function ajax_init()
     );
     $( document ).ajaxComplete( function( event, jqXHR, options )
         {
-            if( options.isCancel ) return ;
+            if( options.isCancel || ! options.ajaxLock ) return ;
             var form = options.activeForm;
             form.removeClass('run-ajax');
             form.find('[type=submit]').removeClass('disabled');
@@ -68,4 +69,14 @@ function showMsg( msg )
     msg.show( $('#alert-message') );
 }
 
+function removeDom( dom , sec )
+{
+    sec = sec || 500;
+    dom.animate({ opacity: 0}, sec);
+    var rmTime = sec + Number(new Date());
+    dom.addClass('rm-time-' + rmTime );
+    setTimeout( function () { 
+        $('.rm-time-' + rmTime ).remove(); 
+    }, sec );
 
+}

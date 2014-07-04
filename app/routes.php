@@ -39,13 +39,17 @@ Route::get('/about', "AboutController@index");
 
 Route::get('/manage', "ManageController@pageArticleList");
 Route::get('/manage/article', "ManageController@pageArticleList");
-Route::get('/manage/article/{$type}', "ManageController@pageArticleList");
+Route::get('/manage/article/type/{$type}', "ManageController@pageArticleList");
+Route::get('/manage/article/view/{$id}', "ManageController@pageArticleView");
 Route::get('/manage/article/modify/{id}', "ManageController@pageArticleModify");
+Route::post('/manage/article/save/{id}', "ManageController@pageArticleSave");
+Route::post('/manage/article/delete/{id}', "ManageController@pageArticleDelete");
 
 Route::get('/manage/message', "ManageController@pageMessageList");
 
 Route::get('/manage/users', "ManageController@pageUsersList");
 Route::get('/manage/parameter', "ManageController@pageParameterList");
+Route::get('/manage/parameter/view/{group}', "ManageController@pageParameterList");
 Route::post('/manage/parameter/save', "ManageController@pageParameterSave");
 Route::post('/manage/parameter/delete', "ManageController@pageParameterDelete");
-Route::get('/manage/parameter/{group}', "ManageController@pageParameterList");
+Route::get('/manage/parameter/ajax/{key}', "ManageController@pageParameterAjax");
