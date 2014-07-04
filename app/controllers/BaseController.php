@@ -59,8 +59,8 @@ class BaseController extends Controller {
                 // View basic information about your account
                 "https://www.googleapis.com/auth/userinfo.profile"
             ));
-            // $this->setData('login_url', $client->createAuthUrl());
-            $this->setData('login_url', '/oauth2callback');
+            $this->setData('login_url', $client->createAuthUrl());
+            // $this->setData('login_url', '/oauth2callback');
 
         } /* end - if :: user */
 
