@@ -1,5 +1,5 @@
 <?php
-class TT extends Eloquent 
+class BaseModel extends Eloquent 
 {
     
     protected $field_enum = [];

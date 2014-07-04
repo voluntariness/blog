@@ -44,7 +44,7 @@ class BaseController extends Controller {
             $menu['menu']['manage']  = '網站管理';
         } else {
             /* 產生登入網址 */
-            require_once app_path() . '/libs/Google/Load.php';
+            // require_once app_path() . '/libs/Google/Load.php';
             $client = new Google_Client();
             $client->setClientId( CLIENT_ID );
             $client->setClientSecret( CLIENT_SECRET );
