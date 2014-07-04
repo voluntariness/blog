@@ -3,10 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>Hello</title>
-    <link href="/jscss/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/jscss/webside/css/layout.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/jscss/jquery/jquery-1.11.0.min.js"></script>
     <!--script type="text/javascript" src="/jscss/starter-kit-1.5.1"></script-->
+    <link href="/jscss/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="/jscss/bootstrap-3.2.0-dist/css/docs.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/jscss/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/jscss/webside/js/layouot.js"></script>
     <script type="text/javascript" src="/jscss/webside/js/message.js"></script>
@@ -17,9 +18,9 @@
         <header>
             <div id="login-panel" >
                 @if ( ! empty($user) )
-                    <a href="/logout" class="btn btn-warning" > 登出 </a>
+                    <a href="/logout" class="btn btn-info" > 登出 </a>
                 @else
-                    <a type="submit" id="login-button" class="btn btn-info" href="<?= $login_url ?>" > 登入 </a>
+                    <a type="submit" id="login-button" class="btn btn-default" href="<?= $login_url ?>" > 登入 </a>
                 @endif
             </div>
             <div id="user-info">
@@ -67,6 +68,8 @@
             </div>
         </div>
     </div>
+
+    @yield('script')
 
 </body>
 </html>

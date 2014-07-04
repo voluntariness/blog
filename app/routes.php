@@ -45,3 +45,5 @@ Route::get('/manage/article/modify/{id}', "ManageController@pageArticleModify");
 Route::get('/manage/message', "ManageController@pageMessageList");
 
 Route::get('/manage/users', "ManageController@pageUsersList");
+Route::get('/manage/parameter', "ManageController@pageParameterList");
+Route::get('/manage/parameter/{group}', "ManageController@pageParameterList");

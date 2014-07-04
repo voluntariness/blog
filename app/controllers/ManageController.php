@@ -42,6 +42,19 @@ class ManageController extends BaseController
     {
         return View::make('manage/users', $this->getData());
     }
+    public function pageParameterList ( $group = 'new' )
+    {
+        /* 取得所有參數群組名稱 */
+        $this->setData('groups', Parameter::select('group')->groupBy('group')->get() );
+
+        /* 取得 $group 的群組所有資料 */
+        $this->setData('list', Parameter::where('group', $group)->get());
+
+        $this->setData('group_name', ($group=='new') ? 'NewGroup' : $group );
+
+
+        return View::make('manage/parameter', $this->getData());
+    }
 
 
     function __construct()
@@ -52,6 +65,7 @@ class ManageController extends BaseController
                 'article' => '文章管理'
                 , 'message' => '留言管理'
                 , 'users' => '成員管理'
+                , 'parameter' => '參數管理'
             ]
             , 'active' => Request::segment(2)
         ];

@@ -10,9 +10,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPassword3" class="col-xs-1 control-label">type</label>
+                <label for="article-type" class="col-xs-1 control-label">type</label>
                 <div class="col-xs-10">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                    <select id="article-type" name="type" >
+                        <?= Article::enum('type') ?>
+                    </select>
+                    <!-- <input type="password" class="form-control" id="inputPassword3" placeholder="Password"> -->
                 </div>
             </div>
             <div class="form-group">
