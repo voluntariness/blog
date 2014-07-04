@@ -19,10 +19,10 @@
  * Abstract IO base class
  */
 
-require_once 'Google/Client.php';
-require_once 'Google/IO/Exception.php';
-require_once 'Google/Http/CacheParser.php';
-require_once 'Google/Http/Request.php';
+// require_once 'Google/Client.php';
+// require_once 'Google/IO/Exception.php';
+// require_once 'Google/Http/CacheParser.php';
+// require_once 'Google/Http/Request.php';
 
 abstract class Google_IO_Abstract
 {
