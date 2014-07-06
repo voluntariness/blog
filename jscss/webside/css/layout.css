@@ -46,7 +46,7 @@ input.invalid{ border:1px solid #fd6f6f; background: #ffe4e4; }
         }
         #main {
             display: inline-block;
-            min-height: 600px;
+            min-height: 480px;
             width:100%;
         }
 

@@ -22,6 +22,7 @@ class BaseController extends Controller {
     	return $this->data;
     }
 
+
     function __construct()
     {
 
@@ -60,7 +61,7 @@ class BaseController extends Controller {
                 "https://www.googleapis.com/auth/userinfo.profile"
             ));
             $this->setData('login_url', $client->createAuthUrl());
-            // $this->setData('login_url', '/oauth2callback');
+            $this->setData('login_url', '/oauth2callback');
 
         } /* end - if :: user */
 

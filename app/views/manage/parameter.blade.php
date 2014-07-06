@@ -10,10 +10,9 @@
                 <div class="col-xs-2">
                     <select id="select-group" class="form-control" name="select-group">
                         <option value="GroupType">各群組管理</option>
-                        @foreach ($groups as $row )
-                            <?php $selected = ( $group_name == $row->key ? 'selected' : '' ); ?>
-                            <option value="<?= $row->key ?>" <?= $selected ?> ><?= $row->value ?></option>
-                        @endforeach
+                        <?php foreach ($groups as $row ) : ?>
+                            <?= Html::options( $groups, $group_select ) ?>
+                        <?php endforeach ?>
                     </select>
                 </div>
             </div>
@@ -27,7 +26,7 @@
             <div id="template-row" class="hide" >
                 <form action="/manage/parameter" method="post" class="form-horizontal" role="form">
                     <input type="hidden" name="id" value="0" />
-                    <input type="hidden" name="group" value="<?=$group_name?>" />
+                    <input type="hidden" name="group" value="<?=$group_select?>" />
                     <div class="bs-callout bs-callout-default data-status" >
                         <div class="form-group" >
                             <label for="parameter-group" class="col-xs-1 control-label">參數 Key</label>
@@ -69,7 +68,7 @@
             @foreach ( $list as $row )
                 <form action="/manage/parameter" method="post" class="form-horizontal" role="form">
                     <input type="hidden" name="id" value="<?=$row->id?>" />
-                    <input type="hidden" name="group" value="<?=$group_name?>" />
+                    <input type="hidden" name="group" value="<?=$group_select?>" />
                     <div class="bs-callout bs-callout-success data-status" >
                         <div class="form-group">
                             <label for="parameter-group" class="col-xs-1 control-label">參數 Key</label>

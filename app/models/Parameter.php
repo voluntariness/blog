@@ -10,4 +10,20 @@ class Parameter extends BaseModel
     protected $table = 'parameter';
 
 
+
+    public function scopeOptions( $query, $group ) 
+    {
+
+    	$list = [];
+    	if ( ! ($result = $query->where('group', $group)->orderBy('order')->get()) ) {
+    		return [];
+    	}
+    	foreach ( $result as $row ) {
+    		$list[ $row->key ] = $row->value;
+    	}
+    	return $list;
+
+    }
+
+
 }

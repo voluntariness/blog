@@ -1,0 +1,4 @@
+mysql 
+
+	GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.1.2' IDENTIFIED BY '123456' WITH GRANT OPTION;
+	flush privileges; /* 刷新資料 */

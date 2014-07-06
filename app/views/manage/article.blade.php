@@ -4,16 +4,12 @@
     <div id="content" class="col-xs-10">
         <h4>文章管理  </h4>
         <hr/>
-        <form id="form-group" action="/manage/parameter" method="get" class="form-horizontal" role="form">
+        <form id="form-type" action="/manage/article/type/" method="get" class="form-horizontal" role="form">
             <div class="form-group">
                 <label for="select-group" class="col-xs-1 control-label">文章分類</label>
                 <div class="col-xs-2">
-                    <select id="select-group" class="form-control" name="select-group">
-                        <option value="">所有文章</option>
-                        @foreach ($types as $row )
-                            <?php $selected = ( $type_select == $row->key ? 'selected' : '' ); ?>
-                            <option value="<?= $row->key ?>" <?= $selected ?> ><?= $row->value ?></option>
-                        @endforeach
+                    <select id="select-type" class="form-control" >
+                        <?= Html::options( $type_list, $type_select) ?>
                     </select>
                 </div>
                 <div class="col-xs-1">
@@ -24,4 +20,12 @@
 
 
     </div>
+@stop
+
+@section('script')
+    <script type="text/javascript">
+        $('#select-type').on('change', function () {
+            location.href= $('#form-type').attr('action') + $(this).val();
+        });
+    </script>
 @stop

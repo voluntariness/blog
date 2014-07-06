@@ -39,8 +39,8 @@ Route::get('/about', "AboutController@index");
 
 Route::get('/manage', "ManageController@pageArticleList");
 Route::get('/manage/article', "ManageController@pageArticleList");
-Route::get('/manage/article/type/{$type}', "ManageController@pageArticleList");
-Route::get('/manage/article/view/{$id}', "ManageController@pageArticleView");
+Route::get('/manage/article/type/{type}', "ManageController@pageArticleList");
+Route::get('/manage/article/view/{id}', "ManageController@pageArticleView");
 Route::get('/manage/article/modify/{id}', "ManageController@pageArticleModify");
 Route::post('/manage/article/save/{id}', "ManageController@pageArticleSave");
 Route::post('/manage/article/delete/{id}', "ManageController@pageArticleDelete");

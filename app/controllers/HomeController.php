@@ -14,17 +14,15 @@ class HomeController extends BaseController
     function __construct()
     {
         parent::__construct();
-        $menu = [
-        	'menu' => [
-	            'all' => '所有文章'
-	            , 'php' => 'PHP'
-	            , 'js' => 'JavaScript'
-	            , 'other' => 'other'
-          	]
-            , 'active' => Request::segment(2)
-        ];
+        $menu = Article::menu();
+        $active = Request::segment(2);
 
-        $this->setData('sidebar', $menu);
+        ! in_array($active, array_keys($menu))
+            and $active = array_keys($menu)[0];
+
+
+
+        $this->setData('sidebar', ['menu'=>$menu, 'active'=>$active]);
     }
 
 }

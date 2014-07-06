@@ -13,7 +13,7 @@ class Html
                 }
                 $html .= "</optgroup>";
             } else {
-                $selected = ( $sel!==null && $k2==$sel ) ? 'selected' : '';
+                $selected = ( $sel!==null && $k==$sel ) ? 'selected' : '';
                 $html .= "<option value='{$k}' {$selected}>{$v}</option>";
             }
         }

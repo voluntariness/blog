@@ -2,8 +2,15 @@
 $(function(){
 
     $('#login-button').on('click', login );
-    $('#login-iframe').on('load', login_error );
+    $('#login-iframe').on('load', loginError );
+
+    /* 設定 Ajax 動作 */
     ajax_init();
+
+    $('button.back-btn').on('click', function () {
+        window.history.back();
+    });
+
 
 });
 
@@ -49,14 +56,17 @@ function login( )
     $('#login-modal').modal('show')
     return false;;
 }
-function login_error() 
+
+/* 登入失敗 */
+function loginError() 
 {
     if ( $(this).attr('status') == 'loading' ) {
         $('#login-message').html('登入失敗... 可能是您未登入 Google 帳號 , 或是本系統無您的資料！');
     }
 }
 
-function login_success() 
+/* 登入成功 */
+function loginSuccess() 
 {
     $('#login-message').html('登入成功');
     $('#login-iframe').attr('status','success');

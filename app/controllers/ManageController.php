@@ -10,33 +10,30 @@ class ManageController extends BaseController
         }
     */
 
-    public function pageArticleList ( $type = null)
+    public function pageArticleList ( $type = null )
     {
-        // $this->setData('sidebar')
-        // $query = DB::table('article')->orderBy('article_date','desc');
-        // ( ! empty( $type ) ) and $query->where('article_type', $type );
-        $this->setData('types', Parameter::where('group','ArticleType')->get() );
+        $type_list = Article::menu();
+        foreach ( $type_list as $key => $row ) {
+            $type_list[$key] = "{$row->value} ( {$row->count} )";
+        }
+        $this->setData('type_list', $type_list );
         $this->setData('type_select', $type);
 
-        $list = empty( $type ) 
-            ? Article::orderBy('datetime','desc')->get() 
-            : Article::where('type', $type)->orderBy('datetime', 'desc')->get(); 
-        $this->setData('list', $list );
+        Article::orderBy('created_at','desc')->get();
+        if ( ! empty($type) && $type != 'all' ) {
+            Article::where('type', $type);
+        }        
+        $this->setData('list', Article::get() );
 
         return View::make('manage/article', $this->getData() );
     }
 
     public function pageArticleModify( $id = 0 )
     {
-        
-        $type_list = [];
-        $result = Parameter::select('key', 'value')->where('group','ArticleType')->get();
-        foreach ( $result as $row ) {
-            $type_list[ $row->key ] = $row->value;
-        }
 
-        $this->setData('type_list', $type_list);
+        $this->setData('type_list', Parameter::options('ArticleType') );
 
+        $this->setData('status_list', Article::status() );
 
         $id = is_numeric($id) ? $id : 0;
 
@@ -62,12 +59,12 @@ class ManageController extends BaseController
         empty($group) and $group = 'GroupType';
 
         /* 取得所有參數群組名稱 */
-        $this->setData('groups', Parameter::select('key','value')->where('group','GroupType')->get() );
+        $this->setData('groups', Parameter::options('GroupType') );
+        $this->setData('group_select', $group );
 
         /* 取得 $group 的群組所有資料 */
         $this->setData('list', Parameter::where('group', $group)->get());
 
-        $this->setData('group_name', ($group=='new') ? 'NewGroup' : $group );
 
         return View::make('manage/parameter', $this->getData());
     }

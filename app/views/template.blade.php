@@ -9,9 +9,35 @@
     <link href="/jscss/bootstrap-3.2.0-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="/jscss/bootstrap-3.2.0-dist/css/docs.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/jscss/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/jscss/EpicEditor/js/epiceditor.min.js"></script>
     <script type="text/javascript" src="/jscss/webside/js/layouot.js"></script>
     <script type="text/javascript" src="/jscss/webside/js/message.js"></script>
-
+    <script type="text/javascript">
+        var epic_opts = {
+            container: 'epiceditor',
+            textarea: null,
+            basePath: '',
+            clientSideStorage: true,
+            localStorageName: null,
+            useNativeFullscreen: true,
+            parser: marked,
+            file: {name: 'epiceditor', defaultContent: '', autoSave: 100 },
+            theme: {
+                base: '/jscss/EpicEditor/themes/base/epiceditor.css',
+                preview: '/jscss/EpicEditor/themes/preview/preview-dark.css',
+                editor: '/jscss/EpicEditor/themes/editor/epic-dark.css'
+            },
+            button: {preview: true, fullscreen: true, bar: "auto"},
+            focusOnLoad: false,
+            shortcut: {modifier: 18, fullscreen: 70, preview: 80 },
+            string: {
+                togglePreview: 'Toggle Preview Mode',
+                toggleEdit: 'Toggle Edit Mode',
+                toggleFullscreen: 'Enter Fullscreen'
+            },
+            autogrow: false
+        };
+    </script>
 </head>
 <body>
     @section('header')
