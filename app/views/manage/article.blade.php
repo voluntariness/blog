@@ -13,7 +13,9 @@
                     </select>
                 </div>
                 <div class="col-xs-1">
-                    <a href="/manage/article/modify/0" class="new-btn btn btn-primary">New</a>
+                    <a href="/manage/article/modify/0" class="new-btn btn btn-default">
+                        <span class="glyphicon glyphicon-plus" ></span>  新增文章
+                    </a>
                 </div>
             </div>
         </form>
@@ -27,6 +29,7 @@
                         <?= date('m 月 d 日 ( Y )',strtotime($row->created_at)) ?>
                     </div>
                 </div>
+                <hr/>
                 <div class="row">
                     <div class="col-xs-12 article-content" >
                         <?= $row->html ?>

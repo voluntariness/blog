@@ -40,8 +40,13 @@
             </div>
             <div class="form-group">
                 <div class="col-xs-offset-1 col-xs-10">
-                    <button type="submit" class="btn btn-default">Save</button>
-                    <button type="button" class="btn btn-default back-btn">Back</button>
+                    <button type="submit" class="btn btn-primary save-btn" btn-action="save">
+                        <span class="glyphicon glyphicon-floppy-disk" ></span>  Save
+                    </button>
+                    <button type="button" class="btn btn-default back-btn" >
+                        <span class="glyphicon glyphicon-arrow-left" ></span>  Back
+                    </button>
+                </div>
                 </div>
             </div>
         </form>
