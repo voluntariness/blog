@@ -11,9 +11,9 @@ class Article extends BaseModel
 
     public function scopeStatus ( $query ) 
     {
-    	$arr = [ 'public' => '公開', 'private' => '私人'];
-    	// $row = static::enum( 'status' );
-    	return [ 'public' => '公開', 'private' => '私人' ];
+        $arr = [ 'public' => '公開', 'private' => '私人'];
+        // $row = static::enum( 'status' );
+        return [ 'public' => '公開', 'private' => '私人' ];
 
     }
 
@@ -26,7 +26,6 @@ class Article extends BaseModel
         $result = $query->select( DB::raw(" `type`, COUNT(`type`) AS 'count' "))
             ->groupBy('type')
             ->get();
-        
         $types = Parameter::options('ArticleType');
 
         $list = [ 'all' => new stdClass() ];
@@ -38,10 +37,10 @@ class Article extends BaseModel
             $list[ $key ]->count = 0;
         }
         foreach ( $result as $row ) {
-            if ( ! isset($list[$row->key]) ) {
+            if ( ! isset($list[$row->type]) ) {
                 continue;
             }
-            $list[ $row->key ]->count = $row->count;
+            $list[ $row->type ]->count = $row->count;
             $list['all']->count += $row->count;
         }
         

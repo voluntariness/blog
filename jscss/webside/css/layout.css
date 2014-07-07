@@ -7,6 +7,20 @@ body
 /* common */
 input.invalid{ border:1px solid #fd6f6f; background: #ffe4e4; }
 
+#alert-modal .modal-title { font-weight: bold; }
+#alert-model #message-content{ font-weight: bold; }
+#alert-modal .modal-header { border-radius: 6px 6px 0 0 }
+#alert-modal .my-alert-info     .modal-header { background: #46B8DA; color: #fff;}
+#alert-modal .my-alert-info   #message-content { color: #46B8DA; }
+#alert-modal .my-alert-primary  .modal-header { background: #428BCA; color: #fff;}
+#alert-modal .my-alert-primary   #message-content { color: #428BCA; }
+#alert-modal .my-alert-success  .modal-header { background: #5CB85C; color: #fff;}
+#alert-modal .my-alert-success   #message-content { color: #5CB85C; }
+#alert-modal .my-alert-warning  .modal-header { background: #D58512; color: #fff;}
+#alert-modal .my-alert-warning   #message-content { color: #D58512; }
+#alert-modal .my-alert-danger   .modal-header { background: #D43F3A; color: #fff;}
+#alert-modal .my-alert-danger   #message-content { color: #D43F3A; }
+
 /* template */
     /* header */
         header {
@@ -75,25 +89,35 @@ input.invalid{ border:1px solid #fd6f6f; background: #ffe4e4; }
         /*position: relative;*/
         /*margin-left:250px;*/
     }
+    div.article-list {
+        background: #eee;
+        padding:10px;
+    }
     article 
     {
 
-        background: #fff;
         border: 1px solid rgba(0, 0, 0, 0);
-        border-color: #DDD;
-        border-radius: 4px;
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+        border-color: #ccc;
+        border-radius: 2px;
+        /*box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.4);*/
         margin: 0 20px 20px 0px;
-        padding: 20px;
+        padding: 5px 20px;
         position: relative;
-        -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+        /*-webkit-box-shadow: 4px 4px 3px rgba(20%, 20%, 40%, 0.4);*/
         width: 1000px;
     }
+    .month-line { line-height: 40px; }
+    .month-line hr { border-color: red; }
+    article > .article-header > .article-title { color: #6565FA; }
+    article > .article-header > .article-date { 
+        color: #555; 
+        float: right;
+        font-weight: bold;
+        line-height: 40px;
 
-    article > label.date-label
-    {
-        position: absolute;
-        right: 20px;
+    }
+    article > .article-options form{ 
+        text-align: right; 
     }
 
 /* manage */
@@ -105,4 +129,9 @@ input.invalid{ border:1px solid #fd6f6f; background: #ffe4e4; }
     .option-btns {
         margin-bottom: 10px;
     }
+
+    /* pages */
+        .pages-row {
+            line-height: 40px;
+        }
 

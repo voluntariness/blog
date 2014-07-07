@@ -74,19 +74,92 @@ function loginSuccess()
     setTimeout( "location.href = '/'" , 1500);
 }
 
-function showMsg( msg ) 
+function showMsg( msg, sec ) 
 {
-    msg.show( $('#alert-message') );
+    // msg.show( $('#alert-message') );
+    $('#alert-modal').modal('hide');
+    $('#message-content').html( msg );
+    $('#alert-modal').modal('show');
+
+    setTimeout( function() {
+        $('#alert-modal').modal('hide');
+    }, sec || 1500 );
+
+
 }
 
 function removeDom( dom , sec )
 {
     sec = sec || 500;
+    dom = $(dom);
     dom.animate({ opacity: 0}, sec);
     var rmTime = sec + Number(new Date());
     dom.addClass('rm-time-' + rmTime );
     setTimeout( function () { 
         $('.rm-time-' + rmTime ).remove(); 
     }, sec );
+
+}
+
+var Alert = function () {
+
+    var _this = this
+        , second = 0
+        , type = 'default'
+        , url = null
+        , content = '';
+    this.sec = function ( sec ) 
+    {
+        second = sec || 1500;
+        return this;
+    }
+    this.redirect = function ( u ) 
+    {
+        url = u;
+        return this;
+    }
+    this.msg = function ( t )
+    {
+        type = t || 'default';
+        return this;
+    }
+    this.info = function ( cont, sec) 
+    {
+        type = 'info';
+        this.show( cont, sec );
+    }
+    this.primary = function ( cont, sec) 
+    {
+        type = 'primary';
+        this.show( cont, sec );
+    }
+
+    this.danger = function ( cont, sec) 
+    {
+        type = 'danger';
+        this.show( cont, sec );
+    }
+    this.warning = function ( cont, sec) 
+    {
+        type = 'warning';
+        this.show( cont, sec );
+    }
+    this.success = function ( cont, sec) 
+    {
+        type = 'success';
+        this.show( cont, sec );
+    }
+    this.show = function ( cont, sec )
+    {
+        this.sec( sec );
+        $('#alert-modal .modal-dialog').attr('class', 'modal-dialog my-alert-' + type )
+        $('#message-content').html( cont );
+        $('#alert-modal').modal('show');
+
+        setTimeout( function() {
+            $('#alert-modal').modal('hide');
+            if ( url !== null ) location.href = url;
+        }, second );
+    }
 
 }

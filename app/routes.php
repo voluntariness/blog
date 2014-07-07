@@ -30,26 +30,40 @@ Route::get('/logout', "SystemController@logout" );
 
 Route::get('/', "HomeController@index");
 Route::get('/home', "HomeController@index");
-Route::get('/home/{type}', "HomeController@index" );
+Route::get('/home/type/{type}', "HomeController@index");
+Route::get('/home/view/{id}', "HomeController@pageView" );
 
 
 Route::get('/link', "LinkController@index");
 
 Route::get('/about', "AboutController@index");
 
+/* 文章管理 */
 Route::get('/manage', "ManageController@pageArticleList");
 Route::get('/manage/article', "ManageController@pageArticleList");
 Route::get('/manage/article/type/{type}', "ManageController@pageArticleList");
 Route::get('/manage/article/view/{id}', "ManageController@pageArticleView");
 Route::get('/manage/article/modify/{id}', "ManageController@pageArticleModify");
-Route::post('/manage/article/save/{id}', "ManageController@pageArticleSave");
-Route::post('/manage/article/delete/{id}', "ManageController@pageArticleDelete");
+Route::post('/manage/article/save', "ManageController@pageArticleSave");
+Route::post('/manage/article/delete', "ManageController@pageArticleDelete");
 
+/* 留言管理 */
 Route::get('/manage/message', "ManageController@pageMessageList");
 
+/* 靜態頁管理 */
+Route::get('/manage/pages', "ManageController@pagePagesList");
+Route::get('/manage/pages/list/{id}', "ManageController@pagePagesList");
+Route::get('/manage/pages/modify/{id}', "ManageController@pagePagesModify");
+Route::post('/manage/pages/save', "ManageController@pagePagesSave");
+Route::post('/manage/pages/delete', "ManageController@pagePagesDelete");
+
+/* 成員管理 */
 Route::get('/manage/users', "ManageController@pageUsersList");
+
+/* Parameter - 參數管理 */
 Route::get('/manage/parameter', "ManageController@pageParameterList");
 Route::get('/manage/parameter/view/{group}', "ManageController@pageParameterList");
 Route::post('/manage/parameter/save', "ManageController@pageParameterSave");
 Route::post('/manage/parameter/delete', "ManageController@pageParameterDelete");
-Route::get('/manage/parameter/ajax/{key}', "ManageController@pageParameterAjax");
+
+Route::get('/manage/ajax/{key}', "ManageController@callAjax");

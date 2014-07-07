@@ -17,7 +17,7 @@
             container: 'epiceditor',
             textarea: null,
             basePath: '',
-            clientSideStorage: true,
+            clientSideStorage: false,
             localStorageName: null,
             useNativeFullscreen: true,
             parser: marked,
@@ -35,7 +35,11 @@
                 toggleEdit: 'Toggle Edit Mode',
                 toggleFullscreen: 'Enter Fullscreen'
             },
-            autogrow: false
+            autogrow: {
+                minHeight: 200,
+                maxHeight: false,
+                scroll: true
+            }
         };
     </script>
 </head>
@@ -61,7 +65,6 @@
                     </li>
                 @endforeach
             </ul>
-            <div id="alert-message"> &nbsp; </div>
         </header>
     @show
     
@@ -95,7 +98,19 @@
         </div>
     </div>
 
-    @yield('script')
+    <div class="modal fade" id="alert-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">訊息</h4>
+                </div>
+                <div id="message-content" class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
 
+    @yield('script')
 </body>
 </html>

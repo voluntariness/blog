@@ -2,7 +2,7 @@
 @include('manage/sidebar')
 @section('content')
     <div id="content" class="col-xs-10">
-        <h4>參數管理</h4>
+        <h2>參數管理</h2>
         <hr/>
         <form id="form-group" action="/manage/parameter" method="get" class="form-horizontal" role="form">
             <div class="form-group">
@@ -10,9 +10,7 @@
                 <div class="col-xs-2">
                     <select id="select-group" class="form-control" name="select-group">
                         <option value="GroupType">各群組管理</option>
-                        <?php foreach ($groups as $row ) : ?>
-                            <?= Html::options( $groups, $group_select ) ?>
-                        <?php endforeach ?>
+                        <?= Html::options( $groups, $group_select ) ?>
                     </select>
                 </div>
             </div>
@@ -123,7 +121,7 @@
         /* 更新 參數群組 */
         var updateGroup = function ( )
         {
-            var url = '/manage/parameter/ajax/groups';
+            var url = '/manage/ajax/groups';
             $.ajax( url, { dataType: 'json' } )
                 .done( function ( request ) {
                     if ( request.status ) {
@@ -217,7 +215,8 @@
 
                         removeDom( formDom );
 
-                        showMsg( (new Message()).success( request.msg, 3000) );
+                        // showMsg( (new Message()).success( request.msg, 3000) );
+                        (new Alert).success( request.msg );
                     } else {
                         dataStatus( formDom, 'danger', request.msg );
                     }
