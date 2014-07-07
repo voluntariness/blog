@@ -22,8 +22,8 @@
                 <label for="page-text" class="col-xs-1 control-label">內容 Content</label>
                 <div class="col-xs-8">
                     <div id="epiceditor"></div>
-                    <textarea class="hide" id="page-text" name="text"></textarea>
-                    <textarea class="hide" id="page-html" name="html"></textarea>
+                    <textarea class="hide" id="page-text" name="text"><?= $row->text ?></textarea>
+                    <textarea class="hide" id="page-html" name="html"><?= $row->html ?></textarea>
                 </div>
             </div>
             <div class="form-group">
