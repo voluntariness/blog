@@ -64,6 +64,21 @@
             $('textarea[name=html]').html( editor.exportFile(null, 'html') );
         });
 
+        $( editor.getElement('editor').body ).on('keydown', function (event) {
+            if ( event.keyCode === 9 ) {
+                var textNode = document.createTextNode( '\u00A0\u00A0\u00A0\u00A0 ' );
+                sel = editor.getElement('editor').getSelection();
+                range = sel.getRangeAt(0);
+                range.deleteContents();
+                range.insertNode( textNode );
+                range.setStart(textNode, textNode.length);
+                range.setEnd(textNode, textNode.length);
+                sel.removeAllRanges();
+                sel.addRange(range);
+                return false;  
+            } 
+        });
+        
         $('#form-save').on('submit', function () {
 
             var url = $(this).attr('action')
