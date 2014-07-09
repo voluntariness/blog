@@ -19,11 +19,20 @@ class ManageController extends BaseController
         $this->setData('type_list', $type_list );
         $this->setData('type_select', $type);
 
-        Article::orderBy('created_at','desc')->get();
-        if ( ! empty($type) && $type != 'all' ) {
-            Article::where('type', $type);
-        }        
-        $this->setData('list', Article::get() );
+        $query = Article::orderBy('created_at','desc');
+
+        ( ! empty($type) && $type != 'all' ) 
+            and ($query->where('type', $type));
+
+        $list = $query->get();
+
+        foreach ( $list as &$row ) {
+            if ( ($idx = mb_strpos($row->html, '@header')) ) {
+                $row->html = substr( $row->html, 0, $idx ) . '<p> ...... </p>';
+            }
+        }
+
+        $this->setData('list', $list);
 
         return View::make('manage/article', $this->getData() );
     }
@@ -50,8 +59,10 @@ class ManageController extends BaseController
     public function pageArticleSave ( $id = 0 ) 
     {
         $invalid = [];
-        ( $id = intval(Input::get('id')) ) <= 0 and $id = 0;
-        ! ( $row = Article::find($id) ) and $row = new Article;
+        ( $id = intval(Input::get('id')) ) <= 0 
+            and ($id = 0);
+        ($row = Article::find($id)) 
+            or ($row = new Article);
 
         $row->title     = Input::get('title');
         $row->tag       = Input::get('tag');

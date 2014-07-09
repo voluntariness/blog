@@ -13,6 +13,12 @@ class HomeController extends BaseController
             ? $query->get()
             : $query->where('type', $type)->get();
 
+        foreach ( $list as &$row ) {
+            if ( ($idx = mb_strpos($row->html, '@header')) ) {
+                $row->html = substr( $row->html, 0, $idx ) . '<p> ...... </p>';
+            }
+        }
+
         $this->setData('list', $list );
         return View::make('home/list', $this->getData() );
 
@@ -28,7 +34,7 @@ class HomeController extends BaseController
         } else if ( $row->status != 'public' ) {
             $row->htlm = '此文章已被限制瀏覽！';
         }
-
+        $row->html = str_replace('@header', '', $row->html);
         $this->setData('row', $row);
         return View::make('home/view', $this->getData());
     }
