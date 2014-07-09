@@ -11,7 +11,7 @@ class HomeController extends BaseController
 
         $list = ( empty($type) || $type == 'all' )
             ? $query->get()
-            : $list->where('type', $type)->get();
+            : $query->where('type', $type)->get();
 
         $this->setData('list', $list );
         return View::make('home/list', $this->getData() );
@@ -36,7 +36,7 @@ class HomeController extends BaseController
     function __construct()
     {
         parent::__construct();
-        $menu = Article::menu();
+        $menu = Article::menu('public');
         $active = Request::segment(3);
 
         ! in_array($active, array_keys($menu))
