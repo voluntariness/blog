@@ -5,9 +5,14 @@ class HomeController extends BaseController
 
     public function index( $type = 'all' )
     {
+
+        $query = Article::where('status','public')->orderBy('created_at','desc');
+
+
         $list = ( empty($type) || $type == 'all' )
-            ? Article::orderBy('created_at','desc')->get()
-            : Article::where('type', $type)->orderBy('created_at','desc')->get();
+            ? $query->get()
+            : $list->where('type', $type)->get();
+
         $this->setData('list', $list );
         return View::make('home/list', $this->getData() );
 
