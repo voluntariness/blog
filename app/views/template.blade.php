@@ -10,6 +10,7 @@
     <link href="/jscss/bootstrap-3.2.0-dist/css/docs.min.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="/jscss/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/jscss/EpicEditor/js/epiceditor.min.js"></script>
+    <script type="text/javascript" src="/jscss/prettify/run_prettify.js"></script>
     <script type="text/javascript" src="/jscss/webside/js/layouot.js"></script>
     <script type="text/javascript" src="/jscss/webside/js/message.js"></script>
     <script type="text/javascript">
@@ -45,7 +46,7 @@
 </head>
 <body>
     @section('header')
-        <header>
+        <header >
             <div id="login-panel" >
                 @if ( ! empty($user) )
                     <a href="/logout" class="btn btn-info" > 登出 </a>
@@ -68,7 +69,7 @@
         </header>
     @show
     
-    <div id="main" >
+    <div id="main" class="well" >
         @yield('sidebar')
 
         @yield('content')

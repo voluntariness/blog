@@ -5,9 +5,7 @@ class HomeController extends BaseController
 
     public function index( $type = 'all' )
     {
-
         $query = Article::where('status','public')->orderBy('created_at','desc');
-
 
         $list = ( empty($type) || $type == 'all' )
             ? $query->get()

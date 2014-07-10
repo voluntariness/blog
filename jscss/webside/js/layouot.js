@@ -11,8 +11,56 @@ $(function(){
         window.history.back();
     });
 
+    /* 設定載入時的高度 */
+    scrollSlider.to = document.body.scrollTop;
+
+    $(document).on('mousewheel', function ( event ) {
+        // console.log( event );
+        scrollSlider.slider( event.originalEvent.deltaY );
+        if ( scrollSlider.to ) {
+            $('header').addClass('scrolled');
+        } else {
+            $('header').removeClass('scrolled');
+        }
+        return false;
+    });
+
+    $(document).on( 'scroll', function ( event ) { });
 
 });
+var scrollSlider = {
+    to : 0
+    , timer : null
+    , slider : function ( v ) {
+        var max = document.body.scrollHeight - window.innerHeight;
+        this.to += v;
+        this.to = (this.to < 0 ? 0 : ( this.to > max ? max : this.to ));
+        this.start();
+    }
+    , start : function () {
+        if ( this.timer == null ) {
+            var _this = this;
+            this.timer = setInterval( function () { _this.run.apply(_this,[]); }, 1 );
+        }
+    }
+    , stop : function () {
+        clearInterval( this.timer );
+        this.timer = null;
+    }
+    , run : function () {
+        if ( Math.abs(sub = this.to - document.body.scrollTop) < 10) {
+            document.body.scrollTop = this.to;
+            this.stop();
+        } else {
+            document.body.scrollTop += Math.floor( sub / 15 );
+        }
+    }
+
+}
+function scrollSlider( to ) 
+{
+
+}
 
 /* ajax 設定 */
 function ajax_init()
@@ -40,6 +88,8 @@ function ajax_init()
         }
     ); 
 }
+
+
 
 /* 登入動作 */
 function login( ) 

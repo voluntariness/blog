@@ -10,7 +10,9 @@
         <hr />
         <div class="row">
             <div class="col-xs-12">
-                <?= $row->html ?>
+                <article>
+                    <?= $row->html ?>
+                </article>
             </div>
         </div>
         <hr />
